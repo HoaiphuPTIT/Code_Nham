@@ -34,7 +34,6 @@ void Menu()
 	item[9] = "In hoa don";
 	item[10] = "Thong ke hoa don";
 	item[11] = "Vat tu co doanh thu cao nhat trong khoang thoi gian";
-	int *mau = new int[numOfItem];
 
 	bool exit = false;
 	
