@@ -8,6 +8,9 @@
 #define RIGHT 77
 #define SPACE 32
 
+#define MAUCHU 7
+#define MAUNEN 176
+
 void gotoxy(int x, int y)
 {
   static HANDLE h = NULL;  
@@ -15,6 +18,11 @@ void gotoxy(int x, int y)
     h = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD c = { x, y };  
   SetConsoleCursorPosition(h,c);
+}
+
+void TextColor(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
 void Menu()
@@ -35,11 +43,18 @@ void Menu()
 	item[10] = "Thong ke hoa don";
 	item[11] = "Vat tu co doanh thu cao nhat trong khoang thoi gian";
 
+	//set mau cho menu
+	for (int i = 0; i < numOfItem; i++)
+	{
+		mau[i] = MAUCHU;
+	}
+	mau[0] = MAUNEN; // highlight o thao tac dau tien
 	bool exit = false;
 	
 	while (!exit)
 	{
 		system("cls");
+		TextColor(mau[i]);
 		gotoxy(3, 14);
 		cout << "ESC: Thoat - ENTER: Chon";
     
@@ -143,5 +158,11 @@ void Menu()
 				_getch();
 			}
 		}
+		//reset lai mau menu
+		for (int i = 0; i < numOfItem; i++)
+		{
+			mau[i] = MAUCHU;
+		}
+		mau[thaoTac] = MAUNEN; // highlight thao tac dang duoc chon
  	 }
 }
